@@ -1,5 +1,5 @@
 # SmoothSpatula-ItemSorter
-Sort the item in the inventory
+Sort the items in the inventory
 
 ---
 
