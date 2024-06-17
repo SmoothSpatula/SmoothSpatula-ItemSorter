@@ -2,7 +2,7 @@
 	"name": "ItemSorter",
 	"version_number": "1.0.0",
 	"website_url": "https://github.com/SmoothSpatula/SmoothSpatula-ItemSorter",
-	"description": "Sort your item during a run",
+	"description": "Sort the items in the inventory",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.0.33",
 		"Klehrik-HelperFunctions-1.0.8"
