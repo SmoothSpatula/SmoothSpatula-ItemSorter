@@ -35,12 +35,11 @@ end
 
 -- ========== Main ==========
 
-gm.post_script_hook(gm.constants.item_give, function(self, other, result, args)
+gm.post_script_hook(gm.constants.item_give_internal, function(self, other, result, args)
     if not params['item_sorter_enabled'] then return end
 
     local actor = args[1].value
     local amount = args[3].value
-    local player_inst = nil
 
     if not is_player(actor) or #actor.inventory_item_order == 1 then return end
     
