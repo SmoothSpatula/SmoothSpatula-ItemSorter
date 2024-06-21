@@ -1,5 +1,5 @@
 # SmoothSpatula-ItemSorter
-Sort the items in the inventory
+Sort the items in the inventory by tier and amount.
 
 ---
 
