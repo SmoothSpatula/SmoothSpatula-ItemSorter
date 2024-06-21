@@ -1,4 +1,4 @@
--- Item Sorter v1.0.2
+-- Item Sorter v1.0.3
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
@@ -39,24 +39,29 @@ gm.post_script_hook(gm.constants.item_give_internal, function(self, other, resul
     if not params['item_sorter_enabled'] then return end
 
     local actor = args[1].value
-    local item = args[2].value
+    local item_id = args[2].value
     local amount = args[3].value
+    local item_index = #actor.inventory_item_order-1
 
     if not is_player(actor) or #actor.inventory_item_order == 1 then return end
 
-    local incoming_amount = actor.inventory_item_stack[item+1]
+    local incoming_amount = actor.inventory_item_stack[item_id+1]
 
-    local item_id = gm.array_pop(actor.inventory_item_order)
+    if incoming_amount ~= amount then
+        item_index = gm.array_get_index(actor.inventory_item_order, item_id)
+    end
+
+    gm.array_delete(actor.inventory_item_order, item_index, 1)
 
     local incoming_item = gm.variable_global_get("class_item")[item_id+1]
     
-    for i = #actor.inventory_item_order, 1, -1 do
+    for i = item_index, 1, -1 do
         local inventory_item = gm.variable_global_get("class_item")[actor.inventory_item_order[i]+1]
 
         local inventory_amount = actor.inventory_item_stack[actor.inventory_item_order[i]+1]
         
         if incoming_item[7] < inventory_item[7] 
-        or (incoming_item[7] == inventory_item[7] and incoming_amount < inventory_amount) then
+        or (incoming_item[7] == inventory_item[7] and incoming_amount <= inventory_amount) then
             gm.array_insert(actor.inventory_item_order, i, item_id)
             return
         end
