@@ -55,7 +55,7 @@ gm.post_script_hook(gm.constants.item_give_internal, function(self, other, resul
 
     local incoming_item = gm.variable_global_get("class_item")[item_id+1]
     
-    for i = item_index, 1, -1 do
+    for i = #actor.inventory_item_order, 1, -1 do
         local inventory_item = gm.variable_global_get("class_item")[actor.inventory_item_order[i]+1]
 
         local inventory_amount = actor.inventory_item_stack[actor.inventory_item_order[i]+1]
