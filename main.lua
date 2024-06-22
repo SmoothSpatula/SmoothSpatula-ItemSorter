@@ -1,4 +1,4 @@
--- Item Sorter v1.0.3
+-- Item Sorter v1.0.4
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
@@ -43,7 +43,7 @@ gm.post_script_hook(gm.constants.item_give_internal, function(self, other, resul
     local amount = args[3].value
     local item_index = #actor.inventory_item_order-1
 
-    if not is_player(actor) or #actor.inventory_item_order == 1 then return end
+    if not is_player(actor) or #actor.inventory_item_order == 1 or item_id == 132 then return end
 
     local incoming_amount = actor.inventory_item_stack[item_id+1]
 
@@ -55,7 +55,7 @@ gm.post_script_hook(gm.constants.item_give_internal, function(self, other, resul
 
     local incoming_item = gm.variable_global_get("class_item")[item_id+1]
     
-    for i = item_index, 1, -1 do
+    for i = #actor.inventory_item_order, 1, -1 do
         local inventory_item = gm.variable_global_get("class_item")[actor.inventory_item_order[i]+1]
 
         local inventory_amount = actor.inventory_item_stack[actor.inventory_item_order[i]+1]
