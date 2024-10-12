@@ -1,4 +1,4 @@
--- Item Sorter v1.0.5
+-- Item Sorter v1.0.6
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
@@ -7,7 +7,6 @@ mods.on_all_mods_loaded(function() for k, v in pairs(mods) do if type(v) == "tab
     params = {
         item_sorter_enabled = true
     }
-
     params = Toml.config_update(_ENV["!guid"], params)
 end)
 
@@ -32,9 +31,6 @@ gm.post_script_hook(gm.constants.item_give_internal, function(self, other, resul
     local amount = args[3].value
     local item_index = #actor.inventory_item_order-1
     local incoming_item = Item.wrap(item_id)
-
-    print(incoming_item.identifier)
-    print(incoming_item.tier)
 
     if actor.object_name ~= "oP" or #actor.inventory_item_order == 1 or incoming_item.is_hidden==true then return end
 
