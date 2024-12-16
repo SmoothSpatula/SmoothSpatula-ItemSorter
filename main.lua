@@ -1,8 +1,8 @@
--- Item Sorter v1.0.6
+-- Item Sorter v1.0.7
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
-mods.on_all_mods_loaded(function() for _, m in pairs(mods) do if type(m) == "table" and m.RoRR_Modding_Toolkit then for _, c in ipairs(m.Classes) do if m[c] then _G[c] = m[c] end end end end end)
+mods["RoRRModdingToolkit-RoRR_Modding_Toolkit"].auto(true)
 mods.on_all_mods_loaded(function() for k, v in pairs(mods) do if type(v) == "table" and v.tomlfuncs then Toml = v end end 
     params = {
         item_sorter_enabled = true
