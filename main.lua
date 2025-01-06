@@ -1,4 +1,4 @@
--- Item Sorter v1.0.7
+-- Item Sorter v1.0.8
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
