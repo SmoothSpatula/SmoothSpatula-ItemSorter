@@ -10,6 +10,7 @@ Sort the items in the inventory by tier and amount.
 ## Special Thanks To
 * The Return Of Modding team
 * Tomoku for suggesting this
+* Onyx for the fix
 
 ## Contact
 For questions or bug reports, you can find us in the [RoRR Modding Server](https://discord.gg/VjS57cszMq) @Miguelito @Umigatari
