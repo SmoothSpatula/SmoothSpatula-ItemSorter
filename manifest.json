@@ -1,6 +1,6 @@
 ﻿{
 	"name": "ItemSorter",
-	"version_number": "1.0.8",
+	"version_number": "1.0.9",
 	"website_url": "https://github.com/SmoothSpatula/SmoothSpatula-ItemSorter",
 	"description": "Sort the items in the inventory",
 	"dependencies": [
