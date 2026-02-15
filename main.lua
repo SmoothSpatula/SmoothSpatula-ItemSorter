@@ -1,14 +1,15 @@
--- Item Sorter v1.0.9
+-- Item Sorter v1.1.0
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
-mods["RoRRModdingToolkit-RoRR_Modding_Toolkit"].auto(true)
-mods.on_all_mods_loaded(function() for k, v in pairs(mods) do if type(v) == "table" and v.tomlfuncs then Toml = v end end 
-    params = {
-        item_sorter_enabled = true
-    }
-    params = Toml.config_update(_ENV["!guid"], params)
-end)
+local RAPI = mods["ReturnsAPI-ReturnsAPI"].setup()
+mods["SmoothSpatula-TomlHelper"].auto()
+
+params = {
+    item_sorter_enabled = true
+}
+params = Toml.config_update(_ENV["!guid"], params)
+
 
 -- ========== ImGui ==========
 
@@ -23,14 +24,14 @@ end)
 
 -- ========== Main ==========
 
-gm.post_script_hook(gm.constants.item_give_internal, function(self, other, result, args)
+RAPI.Hook.add_post(gm.constants.item_give_internal, function(self, other, result, args)
     if not params['item_sorter_enabled'] then return end
 
-    local actor = args[1].value
+    local actor = args[1].value.value
     local item_id = args[2].value
     local amount = args[3].value
     local item_index = #actor.inventory_item_order-1
-    local incoming_item = Item.wrap(item_id)
+    local incoming_item = RAPI.Item.wrap(item_id)
 
     if actor.object_name ~= "oP" or #actor.inventory_item_order == 1 or gm.bool(incoming_item.is_hidden) then return end
 
