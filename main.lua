@@ -1,7 +1,3 @@
--- Item Sorter v1.1.0
--- SmoothSpatula
-
-log.info("Successfully loaded ".._ENV["!guid"]..".")
 local RAPI = mods["ReturnsAPI-ReturnsAPI"].setup()
 mods["SmoothSpatula-TomlHelper"].auto()
 
@@ -42,13 +38,17 @@ RAPI.Hook.add_post(gm.constants.item_give_internal, function(self, other, result
     gm.array_delete(actor.inventory_item_order, item_index, 1)
 
 
+    local incoming_tier_adjusted = incoming_item.tier > 7 and (4 + incoming_item.tier/1000) or incoming_item.tier
+
     for i = #actor.inventory_item_order, 1, -1 do
         local inventory_item = gm.variable_global_get("class_item")[actor.inventory_item_order[i]+1]
 
         local inventory_amount = actor.inventory_item_stack[actor.inventory_item_order[i]+1]
+        
+        local inventory_tier_adjusted = inventory_item[7] > 7 and (4 + inventory_item[7]/1000) or inventory_item[7]
 
-        if incoming_item.tier < inventory_item[7] 
-        or (incoming_item.tier == inventory_item[7] and incoming_amount <= inventory_amount) then
+        if (incoming_tier_adjusted < inventory_tier_adjusted)
+        or (incoming_tier_adjusted == inventory_tier_adjusted and incoming_amount <= inventory_amount) then
             gm.array_insert(actor.inventory_item_order, i, item_id)
             return
         end

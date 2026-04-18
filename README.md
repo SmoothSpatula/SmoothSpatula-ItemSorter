@@ -1,5 +1,5 @@
 # SmoothSpatula-ItemSorter
-Sort the items in the inventory by tier and amount.
+Sort the items in the inventory by tier and amount. Modded tiers all go between Boss and Special Tiers
 
 ---
 
